@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 	private FrameLayout fl_cards;
 	private Stack<CardModel> cardStack;
 	private CardView cardView;
+	private int count;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
 		fl_cards = (FrameLayout) findViewById(R.id.fl_cards);
 		cardView = new CardView(this, null, new CardModel(Suit.Club, "4"));
 		fl_cards.addView(cardView);
+		count = 1;
 		fillStack();
 		cardView.changeCardModel(cardStack.pop());
 	}
 
 	public void changeCards(View view) {
+		Log.d(TAG, "changeCards: " + count++);
 		if(!cardStack.isEmpty()){
 			cardView.changeCardModel(cardStack.pop());
 		}
