@@ -101,10 +101,42 @@ public class CardView extends FrameLayout {
 		tv_bot.setTextColor(toUse);
 	}
 
+	private void fadeOut(){
+//		this.animate().alpha(0f).setDuration(250).start();
+		tv_bot.animate().alpha(0f).setDuration(250).start();
+		tv_top.animate().alpha(0f).setDuration(250).start();
+
+		iv_suit_top.animate().alpha(0f).setDuration(250).start();
+		iv_suit_mid.animate().alpha(0f).setDuration(250).start();
+		iv_suit_bot.animate().alpha(0f).setDuration(250).start();
+	}
+
+	private void fadeIn(){
+//		this.animate().alpha(1f).setDuration(250).start();
+		tv_bot.animate().alpha(1f).setDuration(250).start();
+		tv_top.animate().alpha(1f).setDuration(250).start();
+
+		iv_suit_top.animate().alpha(1f).setDuration(250).start();
+		iv_suit_mid.animate().alpha(1f).setDuration(250).start();
+		iv_suit_bot.animate().alpha(1f).setDuration(250).start();
+	}
+
 
 	public void changeCardModel(CardModel newModel){
 		this.cardModel = newModel;
-		setCard();
+		fadeOut();
+		this.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				setCard();
+			}
+		}, 250);
+		this.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				fadeIn();
+			}
+		}, 250);
 	}
 
 }
